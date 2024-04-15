@@ -1,0 +1,17 @@
+# IntelliJ IDEA files
+.idea/
+
+# Compiled class files
+*.class
+
+# Compiled .jar files
+*.jar
+
+# WebDriver binaries
+webdriver/
+
+# Dependencies
+target/
+
+# Logs
+*.log
