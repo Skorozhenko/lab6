@@ -1,4 +1,6 @@
-import org.junit.Test;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,9 +10,13 @@ import org.testng.Assert;
 public class TrianglePuzzleTest {
     private WebDriver driver;
 
+    @BeforeMethod
+    public void setUp() {
+        driver = new ChromeDriver();
+    }
+
     @Test
     public void testTrianglePuzzle() {
-        driver = new ChromeDriver();
         driver.get("https://playground.learnqa.ru/puzzle/triangle");
 
         WebElement giveUpButton = driver.findElement(By.xpath("//button[text()='Я сдаюсь']"));
@@ -24,8 +30,14 @@ public class TrianglePuzzleTest {
         Assert.assertTrue(hideAnswersButton.isDisplayed(), "Кнопка 'Спрятать ответы' не найдена на странице");
 
         if (answersLink.isDisplayed() && hideAnswersButton.isDisplayed()) {
-                System.out.println("Успешно выполнено");
-            }
-        driver.quit();
+            System.out.println("Успешно выполнено");
+        }
+    }
+
+    @AfterMethod
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit();
+        }
     }
 }
